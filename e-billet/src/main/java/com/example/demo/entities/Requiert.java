@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Requiert  implements Serializable {
 
  @EmbeddedId
-    RequiertKey id;
+    RequiertKey id = new RequiertKey();
 
     @ManyToOne
     @MapsId("bId")

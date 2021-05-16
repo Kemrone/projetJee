@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
@@ -26,21 +28,37 @@ public class BilletController {
 	@Autowired
 	private RestrictionRepository restRep;
 	@Autowired
-	private RestrictionRepository reqRep;
+	private EvenementRepository eventRep;
+	@Autowired
+	private RequiertRepository reqRep;
+	
 	
 	@RequestMapping(value = {"/adminBillet"}, method = RequestMethod.GET)
 	public String adminBillet(Model model)
 	{
-		model.addAttribute("rest", restRep.findAll());
+		model.addAttribute("events", eventRep.findAll());
+		model.addAttribute("rests", restRep.findAll());
 		model.addAttribute("billet", new Billet());
 		model.addAttribute("billets",billetRep.findAll());
 		return "adminBillet";
 	}
 	
 	@RequestMapping("/saveBillet")
-	public String save(  Billet b , Model model)
+	public String save(  Billet b , Model model,@Valid Restriction restriction,@Param("value") String value)
 	{
+		
+		
+		Requiert r = new Requiert();
+		r.setValue(value);
+		r.setBillet(b);
+		r.setRestriction(restriction);
 		billetRep.save(b);
+		
+		reqRep.save(r);
+		
+		
+		model.addAttribute("events", eventRep.findAll());
+		model.addAttribute("rests", restRep.findAll());
 		model.addAttribute("billet", new Billet());
 		model.addAttribute("billets", billetRep.findAll());
 		return "adminBillet";
@@ -51,6 +69,8 @@ public class BilletController {
 	public String check( @RequestParam Long ref ,Model model)
 	{
 		Billet b = billetRep.findById(ref).get();
+		model.addAttribute("event", eventRep.findAll());
+		model.addAttribute("rests", restRep.findAll());
 		model.addAttribute("billet", new Billet());
 		model.addAttribute("check", b);
 		model.addAttribute("billets",billetRep.findAll());
@@ -59,23 +79,25 @@ public class BilletController {
 	
 	
 	@RequestMapping(value = {"/editBillet"})
-	public String edit( Model model,@ModelAttribute Billet check,@RequestParam("bId") String id,
-			@Param("bCritere") String bCritere,@Param("bEvent") String bEvent,
-			@Param("bTarif") String bTarif,@Param("bStock") String bStock,
-			@Param("bRestriction") String bRestriction)
+	public String edit( Model model,@ModelAttribute Billet check,@Param("bId") String id,
+			@Param("bStockDec") String bStockDec, @Param("bStockAdd") String bStockAdd
+			)
 	{
-		
+		model.addAttribute("events", eventRep.findAll());
+		model.addAttribute("rests", restRep.findAll());
 		model.addAttribute("billet", new Billet());
-		Billet b = billetRep.findById(check.getbId()).get();
+		Billet b = billetRep.find(check.getbId());
 		model.addAttribute("billets",billetRep.findAll());
-		b.setbCritere(bCritere);
-		b.setStock(Integer.parseInt(bStock));
-		b.setbTarif(Double.parseDouble(bTarif));
-		b.setEvenement(null);
-		//b.setRequiert(null);
+		
+		if(bStockDec !=null && bStockDec != "") {
+		b.setStock(b.getStock()-Integer.parseInt(bStockDec));
 		billetRep.save(b);
-		//model.addAttribute("billet", billetRep.findById(ref));
-		//model.addAttribute("billets",billetRep.findAll());
+		}
+		
+		else if(bStockAdd !=null && bStockAdd !="") {
+			b.setStock(b.getStock()+Integer.parseInt(bStockAdd));
+			billetRep.save(b);
+			}
 		 
 		return "adminBillet";
 	}
@@ -86,6 +108,8 @@ public class BilletController {
 	{
 		Billet b = billetRep.findById(ref).get();
 		billetRep.delete(b);
+		model.addAttribute("events", eventRep.findAll());
+		model.addAttribute("rests", restRep.findAll());
 		model.addAttribute("billet", new Billet());
 		model.addAttribute("billets",billetRep.findAll());
 		return "adminBillet";

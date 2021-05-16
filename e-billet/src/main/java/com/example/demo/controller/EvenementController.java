@@ -24,6 +24,8 @@ public class EvenementController {
 	private LieuRepository lieuRep;
 	@Autowired
 	private TypeRepository typeRep;
+	@Autowired
+	private AcceuilRepository accueilRep;
 	
 	@RequestMapping(value = {"/adminEvent"}, method = RequestMethod.GET)
 	public String adminEvent(Model model)
@@ -35,12 +37,26 @@ public class EvenementController {
 		return "adminEvent";
 	}
 	@RequestMapping("/saveEvent")
-	public String save( Model model,@Valid Type type,@Param("eName") String eName)
+	public String save( Model model,@Valid Type type,@Valid Lieu lieu,@Param("eName") String eName)
 	{
 		Evenement e = new Evenement();
 		e.setType(type);
 		e.seteName(eName);
+		
+		
+		
+		Acceuil a = new Acceuil();
+		a.setEvenement(e);
+		a.setLieu(lieu);
+		
+		
 		eventRep.save(e);
+		
+		accueilRep.save(a);
+		
+		
+		
+		
 		model.addAttribute("types", typeRep.findAll());
 		model.addAttribute("lieux", lieuRep.findAll());
 		model.addAttribute("event", new Evenement());
@@ -60,8 +76,9 @@ public class EvenementController {
 	@RequestMapping("/deleteEvent")
 	public String delete( @RequestParam Long ref , Model model)
 	{
-		Evenement e = eventRep.findById(ref).get();
-		eventRep.delete(e);
+		//Evenement e = eventRep.findById(ref).get();
+
+		eventRep.deleteEvent(ref);
 		model.addAttribute("types", typeRep.findAll());
 		model.addAttribute("lieux", lieuRep.findAll());
 		model.addAttribute("event", new Evenement());

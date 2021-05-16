@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Acceuil implements Serializable{
 	
 	 @EmbeddedId
-	    AcceuilKey id;
+	    AcceuilKey id = new AcceuilKey();
 
 	    @ManyToOne
 	    @MapsId("eId")

@@ -23,7 +23,11 @@
 </tr>
 <tr>
 <td>Evenement:</td>
-<td><f:input path="evenement"/></td>
+<td><f:select id ="evt" size = "2" path="evenement">
+<c:forEach var="e" items="${events}">
+        <option  value = "${e.eId}">${e.eName}</option>
+    </c:forEach>
+</f:select></td>
 
 </tr>
 <tr>
@@ -39,11 +43,11 @@
 
 <tr>
 <td>Restriction:</td>
-<td><f:select id="req" size = "2" path="${billet.requiert}">
-<c:forEach var="r" items="${rest}">
+<td><select id="restriction" name ="restriction" value ="${restriction}" size = "2" >
+<c:forEach var="r" items="${rests}">
         <option  value = "${r.restrictionId}">${r.nom}</option>
     </c:forEach>
-</f:select></td>
+</select> &nbsp &nbsp Value: <input type="text" id="value" value="${value}" name="value"> </td>
 
 
 <tr>
@@ -88,39 +92,22 @@ ${restriction.restriction.nom} &nbsp : &nbsp ${restriction.value}
 <table>
 <tr>
 <td>iD:</td>
-<td> <input type="text" placeHolder = "${check.bId }" id="bId"  name="bId" /></td>
+<td> <input type="text" id="bId" value = ${check.bId }  name="bId" readonly /> </td>
 
 </tr>
 
 <tr>
-<td>Critères:</td>
-<td> <input type="text" id="bCritere" value="${bCritere}" name="bCritere" /></td>
-
-</tr>
-<tr>
-<td>Evenement:</td>
-<td><input type="text" id="bEvent" value="${bEvent}" name="bEvent" /></td>
-
-</tr>
-<tr>
-<td>Tarif:</td>
-<td><input type="text" id="bTarif" value="${bTarif}" name="bTarif" /></td>
-
-</tr>
-<tr>
-<td>Stock:</td>
-<td><input type="text" id="bStock" value="${bStock}" name="bStock" /></td>
+<td>Ajouter Billets:</td>
+<td><input type="text" id="bStockAdd" value="${Stock}" name="bStockAdd" /></td>
 
 </tr>
 
 <tr>
-<td>Restriction:</td>
-<td><input type="text" id="bRestriction" value="${bRestriction}" name="bRestriction" /></td>
+<td>Retirer Billets:</td>
+<td><input type="text" id="bStockDec" value="${Stock}" name="bStockDec" /></td>
 
 </tr>
 </table>
-
-
 <br>
 
 <td><input type="submit" value="edit"/></td>

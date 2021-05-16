@@ -8,6 +8,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AcceuilKey  implements Serializable {
 
+	
+	
     @Column(name = "lId")
     private Long lId;
 

@@ -17,7 +17,7 @@ public class Lieu implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long lId;
 	private String lName, lAddress;
-	@OneToMany(mappedBy="lieu", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="lieu")
 	private Collection<Acceuil> acceuil;
 	
 	
