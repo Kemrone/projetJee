@@ -27,10 +27,10 @@ public class LoginController {
 	
 	
 	@RequestMapping(value = {"/redirect"} )
-	public String login( RedirectAttributes attributes,Model model,@Param("usermail") String usermail,@Param("password") String password) {
+	public String login( RedirectAttributes attributes,Model model,@Param("username") String username,@Param("password") String password) {
 		String returnUrl ="";
 		String message = "Id incorrects.";
-		Utilisateur u = userRep.checkUserConnection(usermail, password);
+		Utilisateur u = userRep.checkUserConnection(username, password);
 		if(u!=null) {
 			if(u.getRole().getrId() == 0L) {
 				model.addAttribute("user",u);

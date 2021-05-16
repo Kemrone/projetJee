@@ -26,7 +26,8 @@ public class HomeController {
 	private EvenementRepository eventRep;
 	@Autowired
 	private UtilisateurRepository userRep;
-	
+	@Autowired
+	private BilletRepository billetRep;
 	
 	
 	
@@ -34,7 +35,7 @@ public class HomeController {
 	public String home(Model model,@Param("keyword") String keyword) {
 		
 		
-		
+
 		 Utilisateur user = (Utilisateur) model.asMap().get("user");
 		 model.addAttribute("u", user);
 		 List<Evenement> events = eventRep.search(keyword);

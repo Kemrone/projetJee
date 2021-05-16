@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,39 +20,53 @@ public class EvenementController {
 	
 	@Autowired
 	private EvenementRepository eventRep;
+	@Autowired
+	private LieuRepository lieuRep;
+	@Autowired
+	private TypeRepository typeRep;
 	
 	@RequestMapping(value = {"/adminEvent"}, method = RequestMethod.GET)
 	public String adminEvent(Model model)
 	{
-		model.addAttribute("evenement", new Evenement());
-		model.addAttribute("evenements",eventRep.findAll());
+		model.addAttribute("types", typeRep.findAll());
+		model.addAttribute("lieux", lieuRep.findAll());
+		model.addAttribute("event", new Evenement());
+		model.addAttribute("events",eventRep.findAll());
 		return "adminEvent";
 	}
 	@RequestMapping("/saveEvent")
-	public String save(  Evenement e , Model model)
+	public String save( Model model,@Valid Type type,@Param("eName") String eName)
 	{
+		Evenement e = new Evenement();
+		e.setType(type);
+		e.seteName(eName);
 		eventRep.save(e);
-		model.addAttribute("evenement", new Utilisateur());
-		model.addAttribute("evenements",eventRep.findAll());
-		return "saveEvent";
+		model.addAttribute("types", typeRep.findAll());
+		model.addAttribute("lieux", lieuRep.findAll());
+		model.addAttribute("event", new Evenement());
+		model.addAttribute("events",eventRep.findAll());
+		return "adminEvent";
 	}
 	
 	@RequestMapping("/editEvent")
 	public String edit( @RequestParam Long ref , Model model)
 	{
-		
-		model.addAttribute("evenement", eventRep.findById(ref));
-		model.addAttribute("evenements",eventRep.findAll());
-		return "editEvent";
+		model.addAttribute("types", typeRep.findAll());
+		model.addAttribute("lieux", lieuRep.findAll());
+		model.addAttribute("event", eventRep.findById(ref));
+		model.addAttribute("events",eventRep.findAll());
+		return "adminEvent";
 	}
 	@RequestMapping("/deleteEvent")
 	public String delete( @RequestParam Long ref , Model model)
 	{
 		Evenement e = eventRep.findById(ref).get();
 		eventRep.delete(e);
-		model.addAttribute("evenement", new Evenement());
-		model.addAttribute("evenements",eventRep.findAll());
-		return "deleteEvent";
+		model.addAttribute("types", typeRep.findAll());
+		model.addAttribute("lieux", lieuRep.findAll());
+		model.addAttribute("event", new Evenement());
+		model.addAttribute("events",eventRep.findAll());
+		return "adminEvent";
 	}
 
 }

@@ -83,12 +83,12 @@ ${restriction.restriction.nom} &nbsp : &nbsp ${restriction.value}
 
 <h2>EditForm</h2>
 
- <f:form action="editBillet"  method="post">  
+ <f:form  modelAttribute="billet" action="editBillet"  method="post">  
 
 <table>
 <tr>
 <td>iD:</td>
-<td> <input type="text" placeHolder = "${check.bId }"id="bCritere"  name="id" /></td>
+<td> <input type="text" placeHolder = "${check.bId }" id="bId"  name="bId" /></td>
 
 </tr>
 

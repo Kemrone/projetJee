@@ -16,13 +16,31 @@
 <br>
 <br>
 <body>
+<style type="text/css">
+.liens {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: orange;
+  padding-top : 30px;
+  padding-bottom : 30px;
+  padding-right : 30px;
+  padding-left : 30px;
+  font-weight : bold;
+  font-size : 150%;
+  display : flex;
+  flex-direction : row;
+  justify-content : space-around;
+}
+a:link {
+color : white;
+}
+</style>
 <div class = "liens">
         <div><a href="jap.html">Accueil</a></div>
         <div><a href="jap.html">Accueil</a></div> 
         <div><a href="jap.html">Accueil</a></div>
-        <div> <a href="compte.html">Accueil</a> </div>   
-        <div><a href="jap.html">Accueil</a></div> 
-		<div> <a href="compte.html">Accueil</a> </div>
+       
 
         </div>
 <br>

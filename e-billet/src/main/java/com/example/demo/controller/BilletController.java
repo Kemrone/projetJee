@@ -59,7 +59,7 @@ public class BilletController {
 	
 	
 	@RequestMapping(value = {"/editBillet"})
-	public String edit( Model model,@ModelAttribute Billet check,@RequestParam("id") String id,
+	public String edit( Model model,@ModelAttribute Billet check,@RequestParam("bId") String id,
 			@Param("bCritere") String bCritere,@Param("bEvent") String bEvent,
 			@Param("bTarif") String bTarif,@Param("bStock") String bStock,
 			@Param("bRestriction") String bRestriction)
@@ -68,10 +68,10 @@ public class BilletController {
 		model.addAttribute("billet", new Billet());
 		Billet b = billetRep.findById(check.getbId()).get();
 		model.addAttribute("billets",billetRep.findAll());
-		b.setbCritere("ay");
-		//b.setStock(Integer.parseInt(bStock));
-		//b.setbTarif(Double.parseDouble(bTarif));
-		//b.setEvenement(null);
+		b.setbCritere(bCritere);
+		b.setStock(Integer.parseInt(bStock));
+		b.setbTarif(Double.parseDouble(bTarif));
+		b.setEvenement(null);
 		//b.setRequiert(null);
 		billetRep.save(b);
 		//model.addAttribute("billet", billetRep.findById(ref));

@@ -18,7 +18,7 @@
     <f:form action="redirect"  method="get">  
         <div class="container">   
             <label>Nom d'Utilisateur : </label>  
-            <input type="text" placeholder="Entrez votre nom d'utilisateur" id="usermail" value="${usermail}" name="usermail" required>  
+            <input type="text" placeholder="Entrez votre nom d'utilisateur" id="username" value="${username}" name="username" required>  
             <br>  <br> 
             <label>Mot de passe : </label>   
             <input type="password" placeholder="Entrez votre mot de passe"  id="password" value="${password}" name="password" required>  

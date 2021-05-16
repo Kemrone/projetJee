@@ -37,8 +37,7 @@ public class TransactionController {
 	@RequestMapping(value = {"/goTo"}, method = RequestMethod.GET )
 	public String billetAchat(RedirectAttributes attributes,Model model,@RequestParam("ref") Long ref) {
 		
-				
-			Billet b = billetRep.findById(ref).get();
+			Billet b = billetRep.find(ref);
 			model.addAttribute("billet", b);
 				return "billetConfirm";
 	}
@@ -47,7 +46,7 @@ public class TransactionController {
 	public String achatConfirmation(RedirectAttributes attributes,Model model,@ModelAttribute Billet billet) {
 		 
 			
-			Billet b = billetRep.findById(billet.getbId()).get();
+			Billet b = billetRep.find(billet.getbId());
 			model.addAttribute("billet", b);
 			Utilisateur user = (Utilisateur) model.asMap().get("user");
 			

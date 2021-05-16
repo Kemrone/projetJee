@@ -30,7 +30,6 @@
     
     
     
-    
  <center>   
     <form th:action="@{/home}">
     Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}"  />
