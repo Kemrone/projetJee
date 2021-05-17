@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entities.Acceuil;
+import com.example.demo.entities.Billet;
 import com.example.demo.entities.Evenement;
 
 public interface EvenementRepository extends JpaRepository<Evenement,Long> {
@@ -23,6 +25,10 @@ public interface EvenementRepository extends JpaRepository<Evenement,Long> {
 	@Query("delete from Evenement e where e.eId=:eId")
 	@Transactional
 	void deleteEvent(@Param("eId") Long eId);
+	
+	@Query("SELECT e FROM Evenement e WHERE e.eId= ?1")
+	public Evenement find( Long EId);
+	
 	
 	
 }

@@ -8,8 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 @Entity
 @Table(name = "Lieu")
@@ -18,6 +22,7 @@ public class Lieu implements Serializable {
 	private Long lId;
 	private String lName, lAddress;
 	@OneToMany(mappedBy="lieu")
+    @NotFound(action = NotFoundAction.IGNORE)
 	private Collection<Acceuil> acceuil;
 	
 	

@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 @Entity
 @Table(name = "Evenement")
 public class Evenement implements Serializable{
@@ -23,6 +26,7 @@ public class Evenement implements Serializable{
 	@JoinColumn(name="tId" )
 	private Type type;
 	@OneToMany(mappedBy="evenement",fetch = FetchType.EAGER)
+	@NotFound(action = NotFoundAction.IGNORE)
 	private Collection<Acceuil> acceuil;
 	@OneToMany(mappedBy="evenement")
 	private Collection<Billet> billet;

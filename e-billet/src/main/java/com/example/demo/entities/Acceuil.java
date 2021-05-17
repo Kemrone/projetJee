@@ -5,10 +5,14 @@ import java.sql.Date;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 @Entity
 @Table(name = "Acceuil")
@@ -17,12 +21,14 @@ public class Acceuil implements Serializable{
 	 @EmbeddedId
 	    AcceuilKey id = new AcceuilKey();
 
-	    @ManyToOne
+	    @ManyToOne(fetch = FetchType.LAZY)
+	    @NotFound(action = NotFoundAction.IGNORE)
 	    @MapsId("eId")
 	    @JoinColumn(name = "eId")
 	   private Evenement evenement;
 
-	    @ManyToOne
+	    @ManyToOne(fetch = FetchType.LAZY)
+	    @NotFound(action = NotFoundAction.IGNORE)
 	    @MapsId("lId")
 	    @JoinColumn(name = "lId")
 	   private Lieu lieu;
