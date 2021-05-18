@@ -44,9 +44,11 @@
     </c:forEach></td>
   </tr>
 </table>
+<br>
+Votre solde : ${user.solde}
+<br>
 </center>
 <br>
-
 <center>
 <f:form action="confirm">
 
