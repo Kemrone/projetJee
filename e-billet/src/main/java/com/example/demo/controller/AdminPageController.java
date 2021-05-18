@@ -8,11 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.dao.*;
 import com.example.demo.entities.*;
 
 @Controller
+@SessionAttributes("user")
 public class AdminPageController {
 	
 	@Autowired
@@ -24,11 +26,21 @@ public class AdminPageController {
 
 	@RequestMapping(value = {"/admin"}, method = RequestMethod.GET )
 	public String home(Model model) {
+				Utilisateur user = (Utilisateur) model.asMap().get("user");
+				model.addAttribute("u", user);
 				model.addAttribute("nbEvents", eventRep.count());
+				model.addAttribute("events", eventRep.findAll());
 				model.addAttribute("achats", achatRep.findAll());
 				model.addAttribute("billets", billetRep.findAll());
 				
+					if(user == null || user.getRole().getrId()!=1L) {
+						return "redirect:home";
+					}
+					else {
 				return "admin";
+					}
+				
+				
 	}
 	
 	

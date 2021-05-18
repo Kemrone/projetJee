@@ -37,9 +37,9 @@ color : white;
 }
 </style>
 <div class = "liens">
-        <div><a href="jap.html">Accueil</a></div>
-        <div><a href="jap.html">Accueil</a></div> 
-        <div><a href="jap.html">Accueil</a></div>
+        <div><a href="admin">Admin</a></div>
+        <div><a href="adminEvent">Evenements</a></div> 
+        <div><a href="adminBillet">Billets</a></div>
        
 
         </div>
@@ -52,9 +52,8 @@ color : white;
 <c:forEach var="a" items="${achats}">
     <c:set var="total" value="${total + a.quantite}" />
 </c:forEach>
-	Nombre de ventes total de billets vendus : ${total}   (dont  ${total}     ce mois ci)
+	Nombre de ventes total de billets vendus : ${total}  
 	<br>
-	
 	Nombre total d'événements : ${nbEvents}
 </body>
 </html>

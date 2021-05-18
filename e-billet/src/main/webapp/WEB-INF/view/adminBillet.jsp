@@ -7,10 +7,19 @@
 <head>
 <meta charset="ISO-8859-1">
 
+<style>
+table{
+  border: 1px solid black;
+}
+</style>
 
 <title>Gestion Billets</title>
 </head>
+
+
 <body>
+
+<center>
 
 <h2>AddForm</h2>
 <br>
@@ -52,11 +61,14 @@
 
 <tr>
 
-<td><input type="submit" value="save"/></td>
+
 
 </tr>
 
 </table>
+<br>
+<td><input type="submit" value="Save"/></td>
+<br><br>
 
 </f:form>
 
@@ -86,12 +98,12 @@ ${restriction.restriction.nom} &nbsp : &nbsp ${restriction.value}
 <c:if test="${check!=null }">
 
 <h2>EditForm</h2>
-
+<table>
  <f:form  modelAttribute="billet" action="editBillet"  method="post">  
 
 <table>
 <tr>
-<td>iD:</td>
+<td>Id:</td>
 <td> <input type="text" id="bId" value = ${check.bId }  name="bId" readonly /> </td>
 
 </tr>
@@ -110,10 +122,13 @@ ${restriction.restriction.nom} &nbsp : &nbsp ${restriction.value}
 </table>
 <br>
 
-<td><input type="submit" value="edit"/></td>
+<td><input type="submit" value="Edit"/></td>
 
  </f:form>  
+ 
+ </table>
 </c:if>
+</center>
 
  
 </body>

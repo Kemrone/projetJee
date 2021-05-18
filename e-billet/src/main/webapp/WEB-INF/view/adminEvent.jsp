@@ -6,9 +6,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+
+<style>
+table{
+  border: 1px solid black;
+}
+</style>
+
 <title>Gestion Evenements</title>
 </head>
 <body>
+
+<center>
+
 
 <h2>AddForm</h2>
 <br>
@@ -38,13 +48,17 @@
 
 <tr>
 
-<td><input type="submit" value="save"/></td>
+
 
 </tr>
 
 </table>
+<br>
+<td><input type="submit" value="Save"/></td>
 
 </f:form>
+
+<br>
 
 <table>
 <tr>
@@ -65,7 +79,7 @@ ${l.lieu.lName} &nbsp
 </tr>
 </c:forEach>
 </table>
-<br><br>
+<br>
 
 <c:if test="${check!=null }">
 
@@ -75,7 +89,7 @@ ${l.lieu.lName} &nbsp
 
 <table>
 <tr>
-<td>iD:</td>
+<td>Id:</td>
 <td> <input type="text" id="eId" value = ${check.eId }  name="eId" readonly /> </td>
 
 </tr>
@@ -106,10 +120,11 @@ ${l.lieu.lName} &nbsp
 </table>
 <br>
 
-<td><input type="submit" value="edit"/></td>
+<td><input type="submit" value="Edit"/></td>
 
  </f:form>  
 </c:if>
+</center>
 
 
  

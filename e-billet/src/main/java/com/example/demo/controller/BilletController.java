@@ -61,7 +61,7 @@ public class BilletController {
 		model.addAttribute("rests", restRep.findAll());
 		model.addAttribute("billet", new Billet());
 		model.addAttribute("billets", billetRep.findAll());
-		return "adminBillet";
+		return "redirect:adminBillet";
 	}
 
 	
@@ -74,7 +74,7 @@ public class BilletController {
 		model.addAttribute("billet", new Billet());
 		model.addAttribute("check", b);
 		model.addAttribute("billets",billetRep.findAll());
-		return "adminBillet";
+		return "redirect:adminBillet";
 	}
 	
 	
@@ -99,7 +99,7 @@ public class BilletController {
 			billetRep.save(b);
 			}
 		 
-		return "adminBillet";
+		return "redirect:adminBillet";
 	}
 	
 	
@@ -112,7 +112,7 @@ public class BilletController {
 		model.addAttribute("rests", restRep.findAll());
 		model.addAttribute("billet", new Billet());
 		model.addAttribute("billets",billetRep.findAll());
-		return "adminBillet";
+		return "redirect:adminBillet";
 	}
 
 }
