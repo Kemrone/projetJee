@@ -37,7 +37,7 @@ public class AdminPageController {
 						return "redirect:home";
 					}
 					else {
-				return "admin";
+						return "admin";
 					}
 				
 				

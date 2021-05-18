@@ -15,7 +15,45 @@ table{
 
 <title>Gestion Evenements</title>
 </head>
+
+<center>
+<h1>Page Events</h1>
+</center>
+
+
 <body>
+
+<style type="text/css">
+.liens {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: orange;
+  padding-top : 30px;
+  padding-bottom : 30px;
+  padding-right : 30px;
+  padding-left : 30px;
+  font-weight : bold;
+  font-size : 150%;
+  display : flex;
+  flex-direction : row;
+  justify-content : space-around;
+}
+a:link {
+color : white;
+}
+</style>
+<div class = "liens">
+        <div><a href="admin">Admin</a></div>
+        <div><a href="adminEvent">Evenements</a></div> 
+        <div><a href="adminBillet">Billets</a></div>
+       
+
+        </div>
+<br>
+<br>
+<br>
+
 
 <center>
 
@@ -92,7 +130,7 @@ ${d.date} &nbsp
 </table>
 <br>
 
-<c:if test="${check!=null }">
+<c:if test="${check1!=null }">
 
 <h2>EditForm</h2>
 
@@ -101,7 +139,7 @@ ${d.date} &nbsp
 <table>
 <tr>
 <td>Id:</td>
-<td> <input type="text" id="eId" value = ${check.eId }  name="eId" readonly /> </td>
+<td> <input type="text" id="eId" value = ${check1.eId }  name="eId" readonly /> </td>
 
 </tr>
 

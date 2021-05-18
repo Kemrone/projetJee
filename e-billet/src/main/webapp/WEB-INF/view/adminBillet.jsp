@@ -16,8 +16,42 @@ table{
 <title>Gestion Billets</title>
 </head>
 
+<center>
+<h1>Page Billet</h1>
+</center>
 
 <body>
+
+<style type="text/css">
+.liens {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: orange;
+  padding-top : 30px;
+  padding-bottom : 30px;
+  padding-right : 30px;
+  padding-left : 30px;
+  font-weight : bold;
+  font-size : 150%;
+  display : flex;
+  flex-direction : row;
+  justify-content : space-around;
+}
+a:link {
+color : white;
+}
+</style>
+<div class = "liens">
+        <div><a href="admin">Admin</a></div>
+        <div><a href="adminEvent">Evenements</a></div> 
+        <div><a href="adminBillet">Billets</a></div>
+       
+
+        </div>
+<br>
+<br>
+<br>
 
 <center>
 

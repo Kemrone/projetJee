@@ -28,7 +28,7 @@ import com.example.demo.dao.*;
 import com.example.demo.entities.*;
 
 @Controller
-@SessionAttributes({"check","user"})
+@SessionAttributes({"check1","user"})
 public class EvenementController {
 	
 	@Autowired
@@ -39,6 +39,8 @@ public class EvenementController {
 	private TypeRepository typeRep;
 	@Autowired
 	private AcceuilRepository accueilRep;
+	@Autowired
+	private BilletRepository billetRep;
 	
 	@RequestMapping(value = {"/adminEvent"}, method = RequestMethod.GET)
 	public String adminEvent(Model model)
@@ -46,9 +48,9 @@ public class EvenementController {
 		Utilisateur user = (Utilisateur) model.asMap().get("user");
 		model.addAttribute("types", typeRep.findAll());
 		model.addAttribute("lieux", lieuRep.findAll());
+		model.addAttribute("billets", billetRep.findAll());
 		model.addAttribute("event", new Evenement());
 		model.addAttribute("events",eventRep.findAll());
-		model.addAttribute("check",null);
 		if(user == null || user.getRole().getrId()!=1L) {
 			return "redirect:home";
 		}
@@ -63,12 +65,7 @@ public class EvenementController {
 		Evenement e = new Evenement();
 		e.setType(type);
 		e.seteName(eName);
-		/*
-		String dateConvert = date.toString();
-		SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
-        Date parsed = format.parse(dateConvert);
-        java.sql.Date sql = new java.sql.Date(parsed.getTime());
-		*/
+		
 		Date d = Date.valueOf(date);
 		Acceuil a = new Acceuil();
 		a.setDate(d);
@@ -97,21 +94,21 @@ public class EvenementController {
 		Evenement e = eventRep.findById(ref).get();
 		model.addAttribute("event", eventRep.findAll());
 		model.addAttribute("event", new Evenement());
-		model.addAttribute("check", e);
+		model.addAttribute("check1", e);
 		model.addAttribute("events",eventRep.findAll());
 		model.addAttribute("types", typeRep.findAll());
 		model.addAttribute("lieux", lieuRep.findAll());
-		return "adminEvent";
+		return "redirect:adminEvent";
 	}
 	
 	
 	
 	@RequestMapping("/editEvent")
-	public String edit(  Model model,@ModelAttribute Evenement check,
+	public String edit(  Model model,@ModelAttribute Evenement check1,
 						@Valid Type type,@Valid Lieu lieu,@Param("eName") String eName,
 						@RequestParam @DateTimeFormat(pattern = "ddMMyyyy") String date1)
 	{
-		Evenement e = eventRep.find(check.geteId());
+		Evenement e = eventRep.find(check1.geteId());
 		
 		accueilRep.deleteAll(e.getAcceuil());
 		Date d = Date.valueOf(date1);
@@ -133,7 +130,7 @@ public class EvenementController {
 		model.addAttribute("lieux", lieuRep.findAll());
 		model.addAttribute("event", new Evenement());
 		model.addAttribute("events",eventRep.findAll());
-		model.addAttribute("check",null);
+		model.addAttribute("check1",null);
 		return "redirect:adminEvent";
 	}
 	@RequestMapping("/deleteEvent")
