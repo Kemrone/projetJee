@@ -19,10 +19,10 @@
 <center>
 <table border="1">
   <tr>
-    <th colspan="2">Récapitulatif</th>
+    <th colspan="2">RÃ©capitulatif</th>
   </tr>
   <tr>
-    <td>Critères</td>
+    <td>CritÃ¨res</td>
     <td>${billet.bCritere }</td>
   </tr>
   <tr>
@@ -31,10 +31,7 @@
   </tr>
   <tr>
     <td>Tarif</td>
-    <td>
-<c:forEach var="a" items="${event.acceuil}">
-        ${a.lieu.lName}, &nbsp
-    </c:forEach></td>
+    <td>${billet.bTarif } euros</td>
   </tr>
   <tr>
     <td>adresses</td>
