@@ -39,7 +39,7 @@ table{
   flex-direction : row;
   justify-content : space-around;
 }
-a:link {
+.liens.a:link{ {
 color : white;
 }
 </style>
