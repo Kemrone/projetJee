@@ -38,7 +38,7 @@ table{
   flex-direction : row;
   justify-content : space-around;
 }
-a:link {
+.liens.a:link{ {
 color : white;
 }
 </style>
@@ -60,7 +60,7 @@ color : white;
 <f:form modelAttribute="billet" method="post" action="saveBillet" >
 <table>
 <tr>
-<td>Critères:</td>
+<td>CritÃ¨res:</td>
 <td><f:input path="bCritere"/></td>
 
 </tr>
@@ -108,7 +108,7 @@ color : white;
 
 <table>
 <tr>
-<th>Critères</th><th>Evenement</th>
+<th>CritÃ¨res</th><th>Evenement</th>
 <th>Tarif</th><th>Stock</th><th>Restriction</th>
 </tr>
 <c:forEach items="${billets}" var="b">
