@@ -45,8 +45,14 @@ table{
     </c:forEach>
 </select></td>
 
+<td>Date:</td>
+<td><input type="date" id="date" name="date"
+       value=""
+        max="2100-12-31"></td>
 
 <tr>
+
+
 
 
 
@@ -63,7 +69,7 @@ table{
 <table>
 <tr>
 <th>Nom</th><th>Type</th>
-<th>Lieu</th>
+<th>Lieu</th><th>Date</th>
 </tr>
 <c:forEach items="${events}" var="e">
 <tr>
@@ -72,6 +78,11 @@ table{
 <td>
 <c:forEach items="${e.acceuil}" var="l">
 ${l.lieu.lName} &nbsp 
+</c:forEach>
+ </td>
+ <td>
+<c:forEach items="${e.acceuil}" var="d">
+${d.date} &nbsp 
 </c:forEach>
  </td>
 <td><a href="deleteEvent?ref=${e.eId}">Delete</a></td>
@@ -114,7 +125,13 @@ ${l.lieu.lName} &nbsp
 <c:forEach var="l" items="${lieux}">
         <option  value = "${l.lId}">${l.lName}</option>
     </c:forEach>
-</select></td>
+</select></td> &nbsp
+<td>Date:</td>
+<td><input type="date" id="date1" name="date1"
+       value=""
+        max="2100-12-31"></td>
+        
+        </tr>
 
 
 </table>

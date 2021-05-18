@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.dao.*;
@@ -48,6 +49,8 @@ public class HomeController {
 				return "home";
 	}
 	
+	
+	
 	@RequestMapping(value = {"/goToEvent"}, method = RequestMethod.GET )
 	public String eventDetails(RedirectAttributes attributes,Model model,@RequestParam("ref") Long ref) {
 		
@@ -59,7 +62,12 @@ public class HomeController {
 				return "eventPreview";
 	}
 	
-	
+	@RequestMapping(value = {"/logout"}, method = RequestMethod.GET )
+	public String logout(Model model, SessionStatus status) {
+
+		status.setComplete();
+		return "redirect:home";
+	}
 	
 	
 	

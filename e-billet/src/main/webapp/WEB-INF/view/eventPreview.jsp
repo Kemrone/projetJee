@@ -32,14 +32,21 @@
     <td>Lieu</td>
     <td>
 <c:forEach var="a" items="${event.acceuil}">
-        ${a.lieu.lName}, &nbsp
+        ${a.lieu.lName} &nbsp
     </c:forEach></td>
   </tr>
   <tr>
     <td>adresses</td>
     <td>
 <c:forEach var="a" items="${event.acceuil}">
-        ${a.lieu.lAddress}, &nbsp
+        ${a.lieu.lAddress} &nbsp
+    </c:forEach></td>
+  </tr>
+  <tr>
+    <td>Date</td>
+    <td>
+<c:forEach var="a" items="${event.acceuil}">
+        ${a.date}
     </c:forEach></td>
   </tr>
 </table>

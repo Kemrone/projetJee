@@ -20,7 +20,8 @@
 
 	<br/>
 	<c:if test="${user!=null}">
-	Bienvenue &nbsp ${user.uLastname}
+	Bienvenue &nbsp ${user.uLastname}  &nbsp  &nbsp
+	<a href="logout">Log_Out</a>
 	</c:if>
 	<c:if test="${user==null }">
    <a href="login">Log_In</a>

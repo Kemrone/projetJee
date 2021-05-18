@@ -20,7 +20,7 @@ import com.example.demo.dao.*;
 import com.example.demo.entities.*;
 
 @Controller
-@SessionAttributes("check")
+@SessionAttributes({"check","user"})
 public class BilletController {
 	
 	@Autowired
@@ -36,11 +36,17 @@ public class BilletController {
 	@RequestMapping(value = {"/adminBillet"}, method = RequestMethod.GET)
 	public String adminBillet(Model model)
 	{
+		Utilisateur user = (Utilisateur) model.asMap().get("user");
 		model.addAttribute("events", eventRep.findAll());
 		model.addAttribute("rests", restRep.findAll());
 		model.addAttribute("billet", new Billet());
 		model.addAttribute("billets",billetRep.findAll());
-		return "adminBillet";
+		if(user == null || user.getRole().getrId()!=1L) {
+			return "redirect:home";
+		}
+		else {
+			return "adminBillet";
+		}
 	}
 	
 	@RequestMapping("/saveBillet")

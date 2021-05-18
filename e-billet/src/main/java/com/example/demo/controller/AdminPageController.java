@@ -27,7 +27,7 @@ public class AdminPageController {
 	@RequestMapping(value = {"/admin"}, method = RequestMethod.GET )
 	public String home(Model model) {
 				Utilisateur user = (Utilisateur) model.asMap().get("user");
-				model.addAttribute("u", user);
+				//model.addAttribute("u", user);
 				model.addAttribute("nbEvents", eventRep.count());
 				model.addAttribute("events", eventRep.findAll());
 				model.addAttribute("achats", achatRep.findAll());
