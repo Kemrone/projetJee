@@ -32,7 +32,7 @@
   flex-direction : row;
   justify-content : space-around;
 }
-a:link {
+.liens.a:link{ {
 color : white;
 }
 </style>
@@ -54,6 +54,6 @@ color : white;
 </c:forEach>
 	Nombre de ventes total de billets vendus : ${total}  
 	<br>
-	Nombre total d'événements : ${nbEvents}
+	Nombre total d'Ã©vÃ©nements : ${nbEvents}
 </body>
 </html>
